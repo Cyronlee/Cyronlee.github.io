@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习," />
+  <meta name="keywords" content="建站,博客," />
 
 
 
@@ -94,20 +94,18 @@
 
 
 
-<meta name="description" content="昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。">
-<meta name="keywords" content="学习">
+<meta name="description" content="折腾了两天,总算是部署好了  接下来要坚持写博客了  先放松一下  进来听首歌吧">
+<meta name="keywords" content="建站,博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Action中Spring注入的Service为Null的解决方法">
-<meta property="og:url" content="http://yoursite.com/2017/11/04/Action中Spring注入Service为Null的解决方法/index.html">
+<meta property="og:title" content="我的第一个HEXO站点">
+<meta property="og:url" content="http://yoursite.com/2017/08/18/hello-world/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。">
+<meta property="og:description" content="折腾了两天,总算是部署好了  接下来要坚持写博客了  先放松一下  进来听首歌吧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/bug1.png">
-<meta property="og:updated_time" content="2017-11-04T13:37:54.030Z">
+<meta property="og:updated_time" content="2017-08-18T10:24:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Action中Spring注入的Service为Null的解决方法">
-<meta name="twitter:description" content="昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/bug1.png">
+<meta name="twitter:title" content="我的第一个HEXO站点">
+<meta name="twitter:description" content="折腾了两天,总算是部署好了  接下来要坚持写博客了  先放松一下  进来听首歌吧">
 
 
 
@@ -136,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/04/Action中Spring注入Service为Null的解决方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/18/hello-world/"/>
 
 
 
 
 
-  <title>Action中Spring注入的Service为Null的解决方法 | 第三人称</title>
+  <title>我的第一个HEXO站点 | 第三人称</title>
   
 
 
@@ -317,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/04/Action中Spring注入Service为Null的解决方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CYRON">
@@ -334,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Action中Spring注入的Service为Null的解决方法</h1>
+          <h1 class="post-title" itemprop="name headline">我的第一个HEXO站点</h1>
         
 
         <div class="post-meta">
@@ -346,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T21:34:20+08:00">
-                2017-11-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T17:33:29+08:00">
+                2017-08-18
               </time>
             
 
@@ -369,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/默认/" itemprop="url" rel="index">
+                    <span itemprop="name">默认</span>
                   </a>
                 </span>
 
@@ -386,7 +384,7 @@
 
           
           
-             <span id="/2017/11/04/Action中Spring注入Service为Null的解决方法/" class="leancloud_visitors" data-flag-title="Action中Spring注入的Service为Null的解决方法">
+             <span id="/2017/08/18/hello-world/" class="leancloud_visitors" data-flag-title="我的第一个HEXO站点">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -417,17 +415,12 @@
       
 
       
-        <p>昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。<br><a id="more"></a></p>
-<h1 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h1><h3 id="Action-java"><a href="#Action-java" class="headerlink" title="Action.java"></a>Action.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkManAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ModelDriven</span>&lt;<span class="title">LinkMan</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> LinkMan linkMan = <span class="keyword">new</span> LinkMan();</div><div class="line">    <span class="keyword">private</span> LinkManService lms;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        lms.save(linkMan);</div><div class="line">        <span class="keyword">return</span> <span class="string">"list"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> LinkMan <span class="title">getModel</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> linkMan;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLinkManService</span><span class="params">(LinkManService lms)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.lms = lms;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="applicationContext-xml中"><a href="#applicationContext-xml中" class="headerlink" title="applicationContext.xml中"></a>applicationContext.xml中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManAction"</span> <span class="attr">class</span>=<span class="string">"action.LinkManAction"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lms"</span> <span class="attr">ref</span>=<span class="string">"linkManService"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManService"</span> <span class="attr">class</span>=<span class="string">"service.LinkManServiceImpl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lmd"</span> <span class="attr">ref</span>=<span class="string">"linkManDao"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManDao"</span> <span class="attr">class</span>=<span class="string">"dao.LinkManDaoImpl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="Struts-xml中"><a href="#Struts-xml中" class="headerlink" title="Struts.xml中"></a>Struts.xml中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"linkMan"</span> <span class="attr">class</span>=<span class="string">"action.LinkManAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"list"</span>&gt;</span>/jsp/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h2><p>访问了/linkMan，并成功执行了LinkManAction中的execute方法，但是service注入结果为null，个人感觉service没有注入成功。<br><img src="/uploads/bug1.png" alt="1"></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>service的bean name必须与action中要注入的service变量名相同。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> LinkManService lms;</div></pre></td></tr></table></figure></p>
-<p>rename为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> LinkManService linkManService;</div></pre></td></tr></table></figure>
-<p>对应applicationContext.xml中改为</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManService"</span> <span class="attr">class</span>=<span class="string">"service.LinkManServiceImpl"</span> &gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lmd"</span> <span class="attr">ref</span>=<span class="string">"linkManDao"</span> &gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-
+        <p><center> 折腾了两天,总算是部署好了</center></p>
+<p><center> 接下来要坚持写博客了</center></p>
+<p><center font="20"> 先放松一下</center></p>
+<p><center style="“color:red”"> 进来听首歌吧</center></p>
+<a id="more"></a>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=5268323&auto=1&height=66"></iframe>
       
     </div>
     
@@ -444,7 +437,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习/" rel="tag"># 学习</a>
+            <a href="/tags/建站/" rel="tag"># 建站</a>
+          
+            <a href="/tags/博客/" rel="tag"># 博客</a>
           
         </div>
       
@@ -457,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/01/【解决bug】hexo配置algolia搜索/" rel="next" title="【解决bug】hexo配置algolia搜索">
-                <i class="fa fa-chevron-left"></i> 【解决bug】hexo配置algolia搜索
+              <a href="/2017/07/21/source-of-the-site/" rel="next" title="站名由来">
+                <i class="fa fa-chevron-left"></i> 站名由来
               </a>
             
           </div>
@@ -467,8 +462,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/25/SSR使用教程（全平台）/" rel="prev" title="SSR使用教程（全平台）">
-                SSR使用教程（全平台） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/20/regex-reorganized/" rel="prev" title="常用正则表达式整理">
+                常用正则表达式整理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -521,17 +516,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -657,22 +643,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#源代码"><span class="nav-number">1.</span> <span class="nav-text">源代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Action-java"><span class="nav-number">1.0.1.</span> <span class="nav-text">Action.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#applicationContext-xml中"><span class="nav-number">1.0.2.</span> <span class="nav-text">applicationContext.xml中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Struts-xml中"><span class="nav-number">1.0.3.</span> <span class="nav-text">Struts.xml中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug"><span class="nav-number">1.1.</span> <span class="nav-text">bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">1.2.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
