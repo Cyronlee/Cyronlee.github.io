@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="第三人称">
 <meta property="og:description" content="在Linux学习路上收集了很多常用的操作命令，比如开发环境安装、防火墙配置、面板安装等，以下操作仅在CentOS6平台进行过测试，请作参考。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-08T08:54:21.429Z">
+<meta property="og:updated_time" content="2018-03-11T13:22:39.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常用操作命令">
 <meta name="twitter:description" content="在Linux学习路上收集了很多常用的操作命令，比如开发环境安装、防火墙配置、面板安装等，以下操作仅在CentOS6平台进行过测试，请作参考。">
@@ -434,7 +434,7 @@
 <p>卸载JDK相关文件<br><code>yum -y remove java-1.7.0-openjdk*</code></p>
 <p>卸载tzdata-java<br><code>yum -y remove tzdata-java.noarch</code></p>
 <p>查看yum库中的Java安装包<br><code>yum -y list java*</code> </p>
-<p>安装对应版本号Java环境<br>“<em>”表示将java-1.7.0的所有相关Java程序都安装上<br>`yum -y install java-1.7.0-openjdk</em>`</p>
+<p>安装对应版本号Java环境<br><code>*</code>表示将java-1.7.0的所有相关Java程序都安装上<br><code>yum -y install java-1.7.0-openjdk*</code></p>
 <h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h1><h2 id="CentOS-6-中的操作命令"><a href="#CentOS-6-中的操作命令" class="headerlink" title="CentOS 6 中的操作命令"></a>CentOS 6 中的操作命令</h2><p>查看防火墙状态<br><code>service iptables status</code></p>
 <p>暂时停止防火墙<br><code>service iptables stop</code></p>
 <p>启动防火墙<br><code>service iptables start</code></p>
@@ -448,7 +448,8 @@
 <p>永久关闭防火墙<br><code>systemctl disable firewalld.service</code></p>
 <p>查看已经开放的端口<br><code>firewall-cmd --list-ports</code></p>
 <p>开启端口<br><code>firewall-cmd --zone=public --add-port=80/tcp --permanent</code></p>
-<h1 id="宝塔面板"><a href="#宝塔面板" class="headerlink" title="宝塔面板"></a>宝塔面板</h1><p>一款使用方便、功能强大且免费的服务器管理软件,一键配置:LAMP/LNMP、网站、数据库、FTP、SSL,通过Web端轻松管理服务器。</p>
+<h1 id="开发环境-1"><a href="#开发环境-1" class="headerlink" title="开发环境"></a>开发环境</h1><h2 id="sz-rz文件上传下载工具"><a href="#sz-rz文件上传下载工具" class="headerlink" title="sz rz文件上传下载工具"></a>sz rz文件上传下载工具</h2><p>使用yum安装<br><code>yum install lrzsz -y</code><br>上传文件<br><code>rz</code><br>下载文件<br><code>sz test.txt</code></p>
+<h2 id="宝塔面板"><a href="#宝塔面板" class="headerlink" title="宝塔面板"></a>宝塔面板</h2><p>一款使用方便、功能强大且免费的服务器管理软件,一键配置:LAMP/LNMP、网站、数据库、FTP、SSL,通过Web端轻松管理服务器。</p>
 <p><a href="https://www.bt.cn/bbs/thread-1186-1-1.html" target="_blank" rel="external">官方安装教程</a></p>
 
       
@@ -576,7 +577,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -587,7 +588,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -598,7 +599,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -697,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发环境"><span class="nav-number">1.</span> <span class="nav-text">开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-编译环境"><span class="nav-number">1.1.</span> <span class="nav-text">C++编译环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java环境"><span class="nav-number">1.2.</span> <span class="nav-text">Java环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防火墙"><span class="nav-number">2.</span> <span class="nav-text">防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-6-中的操作命令"><span class="nav-number">2.1.</span> <span class="nav-text">CentOS 6 中的操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7-中的操作命令"><span class="nav-number">2.2.</span> <span class="nav-text">CentOS 7 中的操作命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#宝塔面板"><span class="nav-number">3.</span> <span class="nav-text">宝塔面板</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发环境"><span class="nav-number">1.</span> <span class="nav-text">开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-编译环境"><span class="nav-number">1.1.</span> <span class="nav-text">C++编译环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java环境"><span class="nav-number">1.2.</span> <span class="nav-text">Java环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防火墙"><span class="nav-number">2.</span> <span class="nav-text">防火墙</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-6-中的操作命令"><span class="nav-number">2.1.</span> <span class="nav-text">CentOS 6 中的操作命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7-中的操作命令"><span class="nav-number">2.2.</span> <span class="nav-text">CentOS 7 中的操作命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发环境-1"><span class="nav-number">3.</span> <span class="nav-text">开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sz-rz文件上传下载工具"><span class="nav-number">3.1.</span> <span class="nav-text">sz rz文件上传下载工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宝塔面板"><span class="nav-number">3.2.</span> <span class="nav-text">宝塔面板</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="学习," />
+  <meta name="keywords" content="七牛,上传," />
 
 
 
@@ -94,20 +94,18 @@
 
 
 
-<meta name="description" content="昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。">
-<meta name="keywords" content="学习">
+<meta name="description" content="练习项目中，图片上传一直用的是虚拟机中安装的FastDFS分布式文件系统。然而个人需求并不大，虚拟机开关也费时费力，于是简单的封装了一个七牛工具类，用于上传图片并返回URL。">
+<meta name="keywords" content="七牛,上传">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Action中Spring注入的Service为Null的解决方法">
-<meta property="og:url" content="http://yoursite.com/2017/11/04/service-null-solution/index.html">
+<meta property="og:title" content="使用七牛储存图片">
+<meta property="og:url" content="http://yoursite.com/2018/03/12/qiniu-demo/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。">
+<meta property="og:description" content="练习项目中，图片上传一直用的是虚拟机中安装的FastDFS分布式文件系统。然而个人需求并不大，虚拟机开关也费时费力，于是简单的封装了一个七牛工具类，用于上传图片并返回URL。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/uploads/bug1.png">
-<meta property="og:updated_time" content="2017-11-04T13:37:54.030Z">
+<meta property="og:updated_time" content="2018-03-13T08:57:55.062Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Action中Spring注入的Service为Null的解决方法">
-<meta name="twitter:description" content="昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。">
-<meta name="twitter:image" content="http://yoursite.com/uploads/bug1.png">
+<meta name="twitter:title" content="使用七牛储存图片">
+<meta name="twitter:description" content="练习项目中，图片上传一直用的是虚拟机中安装的FastDFS分布式文件系统。然而个人需求并不大，虚拟机开关也费时费力，于是简单的封装了一个七牛工具类，用于上传图片并返回URL。">
 
 
 
@@ -136,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/04/service-null-solution/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/12/qiniu-demo/"/>
 
 
 
 
 
-  <title>Action中Spring注入的Service为Null的解决方法 | 第三人称</title>
+  <title>使用七牛储存图片 | 第三人称</title>
   
 
 
@@ -317,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/04/service-null-solution/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/12/qiniu-demo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CYRON">
@@ -334,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Action中Spring注入的Service为Null的解决方法</h1>
+          <h1 class="post-title" itemprop="name headline">使用七牛储存图片</h1>
         
 
         <div class="post-meta">
@@ -346,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T21:34:20+08:00">
-                2017-11-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T00:59:42+08:00">
+                2018-03-12
               </time>
             
 
@@ -369,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
                   </a>
                 </span>
 
@@ -387,9 +385,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/04/service-null-solution/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/12/qiniu-demo/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/04/service-null-solution/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/12/qiniu-demo/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,7 +395,7 @@
 
           
           
-             <span id="/2017/11/04/service-null-solution/" class="leancloud_visitors" data-flag-title="Action中Spring注入的Service为Null的解决方法">
+             <span id="/2018/03/12/qiniu-demo/" class="leancloud_visitors" data-flag-title="使用七牛储存图片">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -428,16 +426,9 @@
       
 
       
-        <p>昨天开发联系人功能时，突然遇到一个bug，Action中的service注入结果为Null，debug了一天半，终于找到了原因。<br><a id="more"></a></p>
-<h1 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h1><h3 id="Action-java"><a href="#Action-java" class="headerlink" title="Action.java"></a>Action.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkManAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ModelDriven</span>&lt;<span class="title">LinkMan</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> LinkMan linkMan = <span class="keyword">new</span> LinkMan();</div><div class="line">    <span class="keyword">private</span> LinkManService lms;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        lms.save(linkMan);</div><div class="line">        <span class="keyword">return</span> <span class="string">"list"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> LinkMan <span class="title">getModel</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> linkMan;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLinkManService</span><span class="params">(LinkManService lms)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.lms = lms;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="applicationContext-xml中"><a href="#applicationContext-xml中" class="headerlink" title="applicationContext.xml中"></a>applicationContext.xml中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManAction"</span> <span class="attr">class</span>=<span class="string">"action.LinkManAction"</span> <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lms"</span> <span class="attr">ref</span>=<span class="string">"linkManService"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManService"</span> <span class="attr">class</span>=<span class="string">"service.LinkManServiceImpl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lmd"</span> <span class="attr">ref</span>=<span class="string">"linkManDao"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManDao"</span> <span class="attr">class</span>=<span class="string">"dao.LinkManDaoImpl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="Struts-xml中"><a href="#Struts-xml中" class="headerlink" title="Struts.xml中"></a>Struts.xml中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"linkMan"</span> <span class="attr">class</span>=<span class="string">"action.LinkManAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"list"</span>&gt;</span>/jsp/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h2><p>访问了/linkMan，并成功执行了LinkManAction中的execute方法，但是service注入结果为null，个人感觉service没有注入成功。<br><img src="/uploads/bug1.png" alt="1"></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>service的bean name必须与action中要注入的service变量名相同。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> LinkManService lms;</div></pre></td></tr></table></figure></p>
-<p>rename为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> LinkManService linkManService;</div></pre></td></tr></table></figure>
-<p>对应applicationContext.xml中改为</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"linkManService"</span> <span class="attr">class</span>=<span class="string">"service.LinkManServiceImpl"</span> &gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"lmd"</span> <span class="attr">ref</span>=<span class="string">"linkManDao"</span> &gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+        <p>练习项目中，图片上传一直用的是虚拟机中安装的FastDFS分布式文件系统。然而个人需求并不大，虚拟机开关也费时费力，于是简单的封装了一个七牛工具类，用于上传图片并返回URL。<br><a id="more"></a><br>使用Maven引入七牛SDK<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.qiniu<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>qiniu-java-sdk<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>[7.2.0, 7.2.99]<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在项目中新建此工具类，表现层调用方法即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QiniuUtil</span> </span>&#123;</div><div class="line">    <span class="comment">//设置好账号的ACCESS_KEY和SECRET_KEY</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String ACCESS_KEY = <span class="string">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String SECRET_KEY = <span class="string">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span>;</div><div class="line">    <span class="comment">//设置好空间的域名</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String DOMAIN_PATH = <span class="string">"http://xxxxxx127.bkt.clouddn.com/"</span>;</div><div class="line">    <span class="comment">//要上传的空间</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String bucketname = <span class="string">"xxxc"</span>;</div><div class="line">    <span class="comment">//密钥配置</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);</div><div class="line"></div><div class="line">    <span class="comment">//使用SDK中指定上传Zone的第二种方式: 自动识别要上传的空间(bucket)的存储区域是华东、华北、华南。</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Zone z = Zone.autoZone();</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Configuration c = <span class="keyword">new</span> Configuration(z);</div><div class="line"></div><div class="line">    <span class="comment">//创建上传对象</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> UploadManager uploadManager = <span class="keyword">new</span> UploadManager(c);</div><div class="line"></div><div class="line">    <span class="comment">//简单上传，使用默认策略，只需要设置上传的空间名就可以了</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getUpToken</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> auth.uploadToken(bucketname);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//入参为文件字节数组，文件名</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">uploadAndReturnUrl</span><span class="params">(<span class="keyword">byte</span>[] data,String fileName)</span></span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//调用put方法上传</span></div><div class="line">            uploadManager.put(data, fileName, getUpToken());</div><div class="line">            <span class="comment">//没有异常说明上传成功，返回URL</span></div><div class="line">            <span class="keyword">return</span> DOMAIN_PATH + fileName;</div><div class="line">        &#125; <span class="keyword">catch</span> (QiniuException e) &#123;</div><div class="line">            Response r = e.response;</div><div class="line">            <span class="comment">// 请求失败时打印的异常的信息</span></div><div class="line">            System.out.println(r.toString());</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="comment">//响应的文本信息</span></div><div class="line">                System.out.println(r.bodyString());</div><div class="line">            &#125; <span class="keyword">catch</span> (QiniuException e1) &#123;</div><div class="line">                <span class="comment">//ignore</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//入参为文件路径，文件名</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">uploadAndReturnUrl</span><span class="params">(String filePath,String fileName)</span></span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">//调用put方法上传</span></div><div class="line">            uploadManager.put(filePath, fileName, getUpToken());</div><div class="line">            <span class="comment">//没有异常说明上传成功，返回URL</span></div><div class="line">            <span class="keyword">return</span> DOMAIN_PATH + fileName;</div><div class="line">        &#125; <span class="keyword">catch</span> (QiniuException e) &#123;</div><div class="line">            Response r = e.response;</div><div class="line">            <span class="comment">// 请求失败时打印的异常的信息</span></div><div class="line">            System.out.println(r.toString());</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="comment">//响应的文本信息</span></div><div class="line">                System.out.println(r.bodyString());</div><div class="line">            &#125; <span class="keyword">catch</span> (QiniuException e1) &#123;</div><div class="line">                <span class="comment">//ignore</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>还可以继续扩展，等需求到了就会更新~<br>不足之处希望各位指正</p>
 
       
     </div>
@@ -455,7 +446,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习/" rel="tag"># 学习</a>
+            <a href="/tags/七牛/" rel="tag"># 七牛</a>
+          
+            <a href="/tags/上传/" rel="tag"># 上传</a>
           
         </div>
       
@@ -468,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/01/algolia-bugfix/" rel="next" title="【解决bug】hexo配置algolia搜索">
-                <i class="fa fa-chevron-left"></i> 【解决bug】hexo配置algolia搜索
+              <a href="/2018/02/26/interview/" rel="next" title="面试相关知识点整理">
+                <i class="fa fa-chevron-left"></i> 面试相关知识点整理
               </a>
             
           </div>
@@ -478,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/15/software-collection/" rel="prev" title="收藏软件">
-                收藏软件 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/13/concurrent-demo/" rel="prev" title="Java多线程同步Demo">
+                Java多线程同步Demo <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,17 +532,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -675,22 +659,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#源代码"><span class="nav-number">1.</span> <span class="nav-text">源代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Action-java"><span class="nav-number">1.0.1.</span> <span class="nav-text">Action.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#applicationContext-xml中"><span class="nav-number">1.0.2.</span> <span class="nav-text">applicationContext.xml中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Struts-xml中"><span class="nav-number">1.0.3.</span> <span class="nav-text">Struts.xml中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug"><span class="nav-number">1.1.</span> <span class="nav-text">bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">1.2.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -852,9 +820,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/11/04/service-null-solution/';
-          this.page.identifier = '2017/11/04/service-null-solution/';
-          this.page.title = 'Action中Spring注入的Service为Null的解决方法';
+          this.page.url = 'http://yoursite.com/2018/03/12/qiniu-demo/';
+          this.page.identifier = '2018/03/12/qiniu-demo/';
+          this.page.title = '使用七牛储存图片';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://di-san-ren-cheng.disqus.com/embed.js';

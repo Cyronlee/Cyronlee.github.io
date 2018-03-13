@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="多线程,同步," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="学习Java多线程的过程中，为了练习掌握的知识，花了几个小时写了一个小Demo，业务场景为：10个同学，每人的任务是看2本书，书架上只有7本书，于是后面的同学需要等前面同学看完才能看，通过同步代码块实现了这样一个业务。不足之处希望大牛指出。">
+<meta name="keywords" content="多线程,同步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java多线程同步Demo">
+<meta property="og:url" content="http://yoursite.com/2018/03/13/concurrent-demo/index.html">
+<meta property="og:site_name" content="第三人称">
+<meta property="og:description" content="学习Java多线程的过程中，为了练习掌握的知识，花了几个小时写了一个小Demo，业务场景为：10个同学，每人的任务是看2本书，书架上只有7本书，于是后面的同学需要等前面同学看完才能看，通过同步代码块实现了这样一个业务。不足之处希望大牛指出。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-13T08:56:30.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java多线程同步Demo">
+<meta name="twitter:description" content="学习Java多线程的过程中，为了练习掌握的知识，花了几个小时写了一个小Demo，业务场景为：10个同学，每人的任务是看2本书，书架上只有7本书，于是后面的同学需要等前面同学看完才能看，通过同步代码块实现了这样一个业务。不足之处希望大牛指出。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'CYRON'
+    },
+    algolia: {
+      applicationID: '3C0QKBS3L8',
+      apiKey: '1f0dfcfc020a0e14b72fde7f1bf6648c',
+      indexName: 'd3rc',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/13/concurrent-demo/"/>
+
+
+
+
+
+  <title>Java多线程同步Demo | 第三人称</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">第三人称</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">抢眼的孤独难免</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+<link rel="apple-touch-icon" href="/uploads/apple-touch-icon.png"/>   
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/concurrent-demo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CYRON">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="第三人称">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java多线程同步Demo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T16:56:33+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/13/concurrent-demo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/13/concurrent-demo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/13/concurrent-demo/" class="leancloud_visitors" data-flag-title="Java多线程同步Demo">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>学习Java多线程的过程中，为了练习掌握的知识，花了几个小时写了一个小Demo，业务场景为：10个同学，每人的任务是看2本书，书架上只有7本书，于是后面的同学需要等前面同学看完才能看，通过同步代码块实现了这样一个业务。<br>不足之处希望大牛指出。<br><a id="more"></a><br><a href="http://ogbx67127.bkt.clouddn.com/ConcurrentDemo.zip" target="_blank" rel="external">源码下载</a>   </p>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">0号同学借了2本书,书架上还有5本书</div><div class="line">1号同学借了2本书,书架上还有3本书</div><div class="line">2号同学借了2本书,书架上还有1本书</div><div class="line">0号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">0号同学读书任务完成</div><div class="line">9号同学借了2本书,书架上还有1本书</div><div class="line">1号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">1号同学读书任务完成</div><div class="line">3号同学借了2本书,书架上还有1本书</div><div class="line">2号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">2号同学读书任务完成</div><div class="line">8号同学借了2本书,书架上还有1本书</div><div class="line">9号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">9号同学读书任务完成</div><div class="line">4号同学借了2本书,书架上还有1本书</div><div class="line">3号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">3号同学读书任务完成</div><div class="line">7号同学借了2本书,书架上还有1本书</div><div class="line">8号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">8号同学读书任务完成</div><div class="line">5号同学借了2本书,书架上还有1本书</div><div class="line">4号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">4号同学读书任务完成</div><div class="line">6号同学借了2本书,书架上还有1本书</div><div class="line">7号同学读完之后，把书还了回去，书架上还有3本书</div><div class="line">7号同学读书任务完成</div><div class="line">5号同学读完之后，把书还了回去，书架上还有5本书</div><div class="line">5号同学读书任务完成</div><div class="line">6号同学读完之后，把书还了回去，书架上还有7本书</div><div class="line">6号同学读书任务完成</div></pre></td></tr></table></figure>
+<h3 id="书架对象"><a href="#书架对象" class="headerlink" title="书架对象"></a>书架对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bookshelf</span> </span>&#123;</div><div class="line">    <span class="comment">//书架上书籍总数</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> shelfBooks;</div><div class="line">    <span class="comment">//创建一个锁对象</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object lockObj = <span class="keyword">new</span> Object();</div><div class="line">    <span class="comment">//构造方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Bookshelf</span><span class="params">(<span class="keyword">int</span> books)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.shelfBooks = books;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//借书的方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">borrow</span><span class="params">(Person person, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="comment">//同步代码块</span></div><div class="line">        <span class="keyword">synchronized</span>(lockObj)&#123;</div><div class="line">            <span class="comment">//如果书架上书不够，就不能借出了</span></div><div class="line">            <span class="keyword">while</span> (shelfBooks &lt; num)&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    <span class="comment">//这时则需要等待别人来还书</span></div><div class="line">                    lockObj.wait();</div><div class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//书架上的书够了，才可以借走</span></div><div class="line">            person.borrow(num);</div><div class="line">            <span class="keyword">this</span>.shelfBooks -= num;</div><div class="line">            <span class="comment">//释放锁</span></div><div class="line">            lockObj.notifyAll();</div><div class="line">            <span class="comment">//用return而不是get，为了保证数据的时效性</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.shelfBooks;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//还书的方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">back</span><span class="params">(Person person, <span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="comment">//同步代码块</span></div><div class="line">        <span class="keyword">synchronized</span>(lockObj) &#123;</div><div class="line">            <span class="comment">//这里没有什么必要条件，直接运行即可</span></div><div class="line">            person.back(num);</div><div class="line">            <span class="keyword">this</span>.shelfBooks += num;</div><div class="line">            <span class="comment">//释放锁</span></div><div class="line">            lockObj.notifyAll();</div><div class="line">            <span class="comment">//用return而不是get，为了保证数据的时效性</span></div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.shelfBooks;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="同学对象"><a href="#同学对象" class="headerlink" title="同学对象"></a>同学对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="comment">//同学名字</span></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="comment">//每个同学手里的书本量</span></div><div class="line">    <span class="keyword">private</span> Integer books;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getBooks</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> books;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBooks</span><span class="params">(Integer books)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.books = books;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Integer books)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.books = books;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//可以不设置这个方法，用set即可</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">borrow</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.books += num;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//可以不设置这个方法，用set即可</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">back</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.books &gt;= num) <span class="keyword">this</span>.books -= num;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="读书任务"><a href="#读书任务" class="headerlink" title="读书任务"></a>读书任务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadBookTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="comment">//书架</span></div><div class="line">    <span class="keyword">private</span> Bookshelf bookshelf;</div><div class="line">    <span class="comment">//同学</span></div><div class="line">    <span class="keyword">private</span> Person person;</div><div class="line">    <span class="comment">//任务量（每次借几本书）</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> num;</div><div class="line">    <span class="comment">//休眠时间</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> DELAY = <span class="number">1000</span>;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</div><div class="line">                <span class="keyword">int</span> borrow = bookshelf.borrow(person, num);</div><div class="line">                System.out.println(person.getName() + <span class="string">"借了"</span> + person.getBooks() + <span class="string">"本书,书架上还有"</span> + borrow + <span class="string">"本书"</span>);</div><div class="line">                Thread.sleep(DELAY);</div><div class="line">                <span class="keyword">int</span> back = bookshelf.back(person, num);</div><div class="line">                System.out.println(person.getName() + <span class="string">"读完之后，把书还了回去，书架上还有"</span> + back + <span class="string">"本书"</span>);</div><div class="line">                System.out.println(person.getName() + <span class="string">"读书任务完成"</span>);</div><div class="line">                <span class="comment">//读书完成之后可以跳出循环</span></div><div class="line">                <span class="comment">//不跳出也可以，书的总量不会改变</span></div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">catch</span> (InterruptedException e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//构造方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReadBookTask</span><span class="params">(Bookshelf bookshelf, Person person, <span class="keyword">int</span> num, <span class="keyword">int</span> DELAY)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.bookshelf = bookshelf;</div><div class="line">        <span class="keyword">this</span>.person = person;</div><div class="line">        <span class="keyword">this</span>.num = num;</div><div class="line">        <span class="keyword">this</span>.DELAY = DELAY;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a>测试方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        <span class="comment">//手动设置属性比较繁琐</span></div><div class="line">        ArrayList&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="comment">//设置i为一共有10个同学</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">            list.add(<span class="keyword">new</span> Person(i + <span class="string">"号同学"</span>, <span class="number">0</span>));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//设置书架上一共有7书</span></div><div class="line">        Bookshelf bookshelf = <span class="keyword">new</span> Bookshelf(<span class="number">7</span>);</div><div class="line">        <span class="comment">//此处为遍历，即开始的时候线程还是有顺序的，拿到锁的线程释放锁之后，其它线程才会开始抢锁</span></div><div class="line">        <span class="keyword">for</span> (Person person : list) &#123;</div><div class="line">            <span class="comment">//设置num为每个人的读书量为2</span></div><div class="line">            ReadBookTask task = <span class="keyword">new</span> ReadBookTask(bookshelf, person, <span class="number">2</span>, <span class="number">1000</span>);</div><div class="line">            <span class="comment">//给每条线程附上对应的同学名字</span></div><div class="line">            Thread t = <span class="keyword">new</span> Thread(task, person.getName());</div><div class="line">            <span class="comment">//开启线程</span></div><div class="line">            t.start();</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="comment">//设置sleep时间，排队取书，不要插队（排在前面的同学先把书借走了，后面的学生开始抢）</span></div><div class="line">                Thread.sleep(<span class="number">100</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                <span class="comment">//InterruptedException异常是对阻塞方法(比如sleep)的一个良好的提示异常</span></div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>感谢看到这里，不足之处希望指出。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+            <a href="/tags/同步/" rel="tag"># 同步</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/qiniu-demo/" rel="next" title="使用七牛储存图片">
+                <i class="fa fa-chevron-left"></i> 使用七牛储存图片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="CYRON" />
+          <p class="site-author-name" itemprop="name">CYRON</p>
+           
+              <p class="site-description motion-element" itemprop="description">会使用工具</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/PYRE" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-quora"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/48373123/statuses" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-film"></i>
+                  
+                    
+                      豆瓣
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/u/1778000571" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://steamcommunity.com/id/deltapyre/" target="_blank" title="Steam">
+                  
+                    <i class="fa fa-fw fa-steam"></i>
+                  
+                    
+                      Steam
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://henutms.com/" title="托马斯电竞社" target="_blank">托马斯电竞社</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://bbs.henutms.com/" title="托马斯论坛" target="_blank">托马斯论坛</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#结果展示"><span class="nav-number">1.</span> <span class="nav-text">结果展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#书架对象"><span class="nav-number">2.</span> <span class="nav-text">书架对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同学对象"><span class="nav-number">3.</span> <span class="nav-text">同学对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读书任务"><span class="nav-number">4.</span> <span class="nav-text">读书任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试方法"><span class="nav-number">5.</span> <span class="nav-text">测试方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CYRON</span>
+
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">阅读量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://di-san-ren-cheng.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/03/13/concurrent-demo/';
+          this.page.identifier = '2018/03/13/concurrent-demo/';
+          this.page.title = 'Java多线程同步Demo';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://di-san-ren-cheng.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("26i53GXlfMha0m23BaM1ByAt-gzGzoHsz", "VX7YHTk8Tq0Yq7F1on0kaQ8O");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
