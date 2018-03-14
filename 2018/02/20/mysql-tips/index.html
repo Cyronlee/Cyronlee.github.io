@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="第三人称">
 <meta property="og:description" content="在学习MySQL的过程中，遇到的一个小问题，感觉挺有意思。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T14:18:40.522Z">
+<meta property="og:updated_time" content="2018-03-14T14:21:19.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL中COUNT()的正确食用方法">
 <meta name="twitter:description" content="在学习MySQL的过程中，遇到的一个小问题，感觉挺有意思。">
@@ -430,7 +430,7 @@
 <p>我们需要查出value为4的个数<br>↓错误方式：结果为10<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">value</span>=<span class="number">4</span>) </div><div class="line"><span class="keyword">FROM</span> <span class="keyword">test</span></div></pre></td></tr></table></figure></p>
 <p>↓正确方式：结果为3<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">value</span>=<span class="number">4</span> <span class="keyword">OR</span> <span class="literal">NULL</span>) </div><div class="line"><span class="keyword">FROM</span> <span class="keyword">test</span></div></pre></td></tr></table></figure></p>
 <p>逻辑上有些奇怪，为什么要加这个<code>OR NULL</code>呢？</p>
-<p>我们看一下<code>COUNT()</code>方法括号中的表达式对应的值：<br>|表达式| 4=4 | 3=4 | 1 OR NULL | 0 OR NULL |<br>|—|—|—|—|—|<br>|值| 1 | 0 | 0 | NULL |  </p>
+<p>我们看一下<code>COUNT()</code>方法括号中的表达式对应的值：<br>|表达式| 4=4 | 3=4 | 1 OR NULL | 0 OR NULL |<br>|:—|:—|:—|:—|:—|<br>|值| 1 | 0 | 0 | NULL |  </p>
 <p>原来，只要值不为<code>NULL</code>（相等为1，不等为0，他们都不为<code>NULL</code>），<code>COUNT()</code>就会计数。  </p>
 <p>所以，加的这个<code>OR NULL</code>，有点三元运算符的意味呢。</p>
 
