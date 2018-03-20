@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="d3rc, 第三人称" />
+  <meta name="keywords" content="Linux,部署," />
 
 
 
@@ -94,16 +94,18 @@
 
 
 
-<meta name="description" content="会使用工具">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="http://d3rc.top/tags/上传/index.html">
+<meta name="description" content="Spring Boot项目可以使用Maven命令mvn:clean package将项目打包成只执行的jar文件，但使用命令java -jar XX.jar来执行无法将shell命令行释放，关闭terminal后进程也随之关闭了。这里介绍在Linux系统中后台运行Spring Boot jar文件的方法。">
+<meta name="keywords" content="Linux,部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下部署Spring Boot jar包">
+<meta property="og:url" content="http://d3rc.top/2018/03/13/linux-nohup/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="会使用工具">
+<meta property="og:description" content="Spring Boot项目可以使用Maven命令mvn:clean package将项目打包成只执行的jar文件，但使用命令java -jar XX.jar来执行无法将shell命令行释放，关闭terminal后进程也随之关闭了。这里介绍在Linux系统中后台运行Spring Boot jar文件的方法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-20T03:57:15.391Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="会使用工具">
+<meta name="twitter:title" content="Linux下部署Spring Boot jar包">
+<meta name="twitter:description" content="Spring Boot项目可以使用Maven命令mvn:clean package将项目打包成只执行的jar文件，但使用命令java -jar XX.jar来执行无法将shell命令行释放，关闭terminal后进程也随之关闭了。这里介绍在Linux系统中后台运行Spring Boot jar文件的方法。">
 
 
 
@@ -132,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://d3rc.top/tags/上传/"/>
+  <link rel="canonical" href="http://d3rc.top/2018/03/13/linux-nohup/"/>
 
 
 
 
 
-  <title>标签: 上传 | 第三人称</title>
+  <title>Linux下部署Spring Boot jar包 | 第三人称</title>
   
 
 
@@ -157,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -299,54 +301,203 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>上传<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://d3rc.top/2018/03/13/linux-nohup/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CYRON">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="第三人称">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/03/12/qiniu-demo/" itemprop="url">
-              
-                <span itemprop="name">SpringBoot七牛上传图片Demo</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Linux下部署Spring Boot jar包</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-12T00:59:42+08:00"
-              content="2018-03-12" >
-          03-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T13:22:41+08:00">
+                2018-03-13
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/13/linux-nohup/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/13/linux-nohup/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/13/linux-nohup/" class="leancloud_visitors" data-flag-title="Linux下部署Spring Boot jar包">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p>Spring Boot项目可以使用Maven命令<code>mvn:clean package</code>将项目打包成只执行的jar文件，但使用命令<code>java -jar XX.jar</code>来执行无法将shell命令行释放，关闭terminal后进程也随之关闭了。这里介绍在Linux系统中后台运行Spring Boot jar文件的方法。<br><a id="more"></a>  </p>
+<p>实现这个功能主要依赖于Linux的<code>nohup</code>命令。<br><code>nohup</code>命令可以将程序以忽略挂起信号的方式运行起来，被运行的程序的输出信息将不会显示到终端。</p>
+<h2 id="原始方法"><a href="#原始方法" class="headerlink" title="原始方法"></a>原始方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar demo.jar</div></pre></td></tr></table></figure>
+<p>当前SSH窗口被锁定，可按CTRL + C打断程序运行，或直接关闭窗口，程序退出。</p>
+<h2 id="进阶方法，加-amp-代表在后台运行"><a href="#进阶方法，加-amp-代表在后台运行" class="headerlink" title="进阶方法，加&amp;代表在后台运行"></a>进阶方法，加&amp;代表在后台运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar demo.jar &amp;</div></pre></td></tr></table></figure>
+<p>当前ssh窗口不被锁定，但是当窗口关闭，或SSH断开时，程序中止运行。</p>
+<h2 id="使用nohup后台运行"><a href="#使用nohup后台运行" class="headerlink" title="使用nohup后台运行"></a>使用nohup后台运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup java -jar demo.jar &amp;</div></pre></td></tr></table></figure>
+<p>nohup 意思是不挂断运行命令,当账户退出或终端关闭时,程序仍然运行。</p>
+<p>当用 nohup 命令执行作业时，缺省情况下该作业的所有输出被重定向到nohup.out的文件中，除非另外指定了输出文件。</p>
+<h2 id="使用nohup后台运行-并指定输出文件"><a href="#使用nohup后台运行-并指定输出文件" class="headerlink" title="使用nohup后台运行,并指定输出文件"></a>使用nohup后台运行,并指定输出文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup java -jar demo.jar &amp; &gt;log.txt &amp;</div></pre></td></tr></table></figure>
+<p>是将command的输出重定向到log.txt文件，即输出内容不打印到屏幕上，而是输出到log.txt文件中。</p>
+<h2 id="查找运行的进程"><a href="#查找运行的进程" class="headerlink" title="查找运行的进程"></a>查找运行的进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | grep demo</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/部署/" rel="tag"># 部署</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/qiniu-demo/" rel="next" title="SpringBoot七牛上传图片Demo">
+                <i class="fa fa-chevron-left"></i> SpringBoot七牛上传图片Demo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -354,6 +505,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -374,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -501,6 +672,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原始方法"><span class="nav-number">1.</span> <span class="nav-text">原始方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶方法，加-amp-代表在后台运行"><span class="nav-number">2.</span> <span class="nav-text">进阶方法，加&代表在后台运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nohup后台运行"><span class="nav-number">3.</span> <span class="nav-text">使用nohup后台运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nohup后台运行-并指定输出文件"><span class="nav-number">4.</span> <span class="nav-text">使用nohup后台运行,并指定输出文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找运行的进程"><span class="nav-number">5.</span> <span class="nav-text">查找运行的进程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -638,10 +825,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -659,6 +846,18 @@
       <script id="dsq-count-scr" src="https://di-san-ren-cheng.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://d3rc.top/2018/03/13/linux-nohup/';
+          this.page.identifier = '2018/03/13/linux-nohup/';
+          this.page.title = 'Linux下部署Spring Boot jar包';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://di-san-ren-cheng.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
