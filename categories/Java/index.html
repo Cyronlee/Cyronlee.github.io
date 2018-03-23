@@ -97,7 +97,7 @@
 <meta name="description" content="会使用工具">
 <meta property="og:type" content="website">
 <meta property="og:title" content="第三人称">
-<meta property="og:url" content="http://d3rc.top/categories/Java/index.html">
+<meta property="og:url" content="http://d3rc.top/categories/java/index.html">
 <meta property="og:site_name" content="第三人称">
 <meta property="og:description" content="会使用工具">
 <meta property="og:locale" content="zh-Hans">
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://d3rc.top/categories/Java/"/>
+  <link rel="canonical" href="http://d3rc.top/categories/java/"/>
 
 
 
 
 
-  <title>分类: Java | 第三人称</title>
+  <title>分类: java | 第三人称</title>
   
 
 
@@ -306,7 +306,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Java<small>分类</small>
+        <h1>java<small>分类</small>
         </h1>
       </div>
 
@@ -318,37 +318,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/02/13/concurrent-demo/" itemprop="url">
+            <a class="post-title-link" href="/2017/11/04/service-null-solution/" itemprop="url">
               
-                <span itemprop="name">Java多线程同步Demo</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-13T16:56:33+08:00"
-              content="2018-02-13" >
-          02-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/22/java-tests/" itemprop="url">
-              
-                <span itemprop="name">Java基础练习题自测合集</span>
+                <span itemprop="name">Action中Spring注入的Service为Null的解决方法</span>
               
             </a>
         
@@ -356,9 +328,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-22T16:00:11+08:00"
-              content="2017-08-22" >
-          08-22
+              datetime="2017-11-04T21:34:20+08:00"
+              content="2017-11-04" >
+          11-04
         </time>
       </div>
 
@@ -430,7 +402,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -815,6 +787,44 @@
               success: function(newcounter) {
                 var $element = $(document.getElementById(url));
                 $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+.text(newcounter.get('time'));
               },
               error: function(newcounter, error) {
                 console.log('Failed to create');
